@@ -1,0 +1,111 @@
+Parsing...
+Line: 3 * (5 + 2 / x - 1)
+Tokens: 
+
+3   : NUMBER
+*   : SYMBOL
+(   : SYMBOL
+5   : NUMBER
++   : SYMBOL
+2   : NUMBER
+/   : SYMBOL
+x   : IDENTIFIER
+-   : SYMBOL
+1   : NUMBER
+)   : SYMBOL
+
+
+AST: 
+
+* : SYMBOL
+    3 : NUMBER
+    + : SYMBOL
+        5 : NUMBER
+        - : SYMBOL
+            / : SYMBOL
+                2 : NUMBER
+                x : IDENTIFIER
+            1 : NUMBER
+Parsing...
+Line: x32 := 36 - y;
+Tokens: 
+
+x32 : IDENTIFIER
+:=  : SYMBOL
+36  : NUMBER
+-   : SYMBOL
+y   : IDENTIFIER
+;   : SYMBOL
+
+
+AST: 
+
+x32 : IDENTIFIER
+Parsing...
+Line: if y then
+Tokens: 
+
+if  : KEYWORD
+y   : IDENTIFIER
+then: KEYWORD
+
+
+AST: 
+
+Parsing...
+Line: x32 :=0; skip
+Tokens: 
+
+x32 : IDENTIFIER
+:=  : SYMBOL
+0   : NUMBER
+;   : SYMBOL
+skip: KEYWORD
+
+
+AST: 
+
+x32 : IDENTIFIER
+Parsing...
+Line: else
+Tokens: 
+
+else: KEYWORD
+
+
+AST: 
+
+Parsing...
+Line: whiley := 12^2;
+Tokens: 
+
+whiley: IDENTIFIER
+:=  : SYMBOL
+12  : NUMBER
+ERROR READING: "^"
+
+
+AST: 
+
+whiley : IDENTIFIER
+Parsing...
+Line: z:= x32
+Tokens: 
+
+z   : IDENTIFIER
+:=  : SYMBOL
+x32 : IDENTIFIER
+
+
+AST: 
+
+z : IDENTIFIER
+Parsing...
+Line: endif
+Tokens: 
+
+endif: KEYWORD
+
+
+AST: 
+
