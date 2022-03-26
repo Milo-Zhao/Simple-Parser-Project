@@ -7,7 +7,7 @@ ifstream inputFile;
 ofstream outputFile;
 regex IDENTIFIER("([a-z]|[A-Z])([a-z]|[A-Z]|[0-9])*");
 regex NUMBER("[0-9]+");
-regex SYMBOL("[\\+ | \\- | \\* | \\/ | \\( | \\) | \\:= | \\;]+");
+regex SYMBOL("[\\+ | \\- | \\* | \\/ | \\( | \\) | \\:= | \\;]");
 regex KEYWORD("if|then|else|endif|while|do|endwhile|skip");
 
 string returnType(string s)
@@ -25,6 +25,10 @@ string returnType(string s)
 	{
 		return "NUMBER";
 	}
+	else if (!s.compare(":="))
+	{
+		return "SYMBOL";
+	}
 	else if (regex_match(s, SYMBOL))
 	{
 		return "SYMBOL";
@@ -32,7 +36,7 @@ string returnType(string s)
 	else
 	{
 		char temp = s[0];
-		if (temp == '-')
+		if (s.size() == 1 && temp == '-')
 		{
 			return "SYMBOL";
 		}
@@ -42,8 +46,8 @@ string returnType(string s)
 
 void printToken(Token token)
 {
-	outputFile << left << setfill(' ') << setw(4) << token.getValue() << ": ";
-	outputFile << left << setfill(' ') << setw(4) << token.getType() << endl;
+	outputFile << left << setfill(' ') << setw(8) << token.getValue() << ": ";
+	outputFile << left << setfill(' ') << setw(8) << token.getType() << endl;
 }
 
 string* splitByLine(int* linesIndex)
@@ -69,7 +73,6 @@ vector<Token> Tokenizer(string line, int* linesIndex)
 	string toCheck;
 	string tempStr;
 	istringstream is(line);
-	outputFile << "Tokens: " << endl << endl;
 	while (!is.eof())
 	{
 		is >> toCheck;
@@ -83,7 +86,7 @@ vector<Token> Tokenizer(string line, int* linesIndex)
 			{
 				if (tempStr.length() == 1)
 				{
-					outputFile << left << setfill(' ') << setw(4) << "ERROR READING: \"" << tempStr << "\"" << endl;
+					outputFile << left << setfill(' ') << setw(8) << "ERROR READING: \"" << tempStr << "\"" << endl;
 					stringLengthChecked = 0;
 					rightIndex = 1;
 					ifBreak = 1;
@@ -123,6 +126,5 @@ vector<Token> Tokenizer(string line, int* linesIndex)
 			break;
 		}
 	}
-	outputFile << endl << endl;
 	return tokens;
 }

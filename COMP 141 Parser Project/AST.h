@@ -3,18 +3,18 @@
 using namespace std;
 
 Node* parseExperssion(vector<Token> tokens);
-int index;
+int tokenIndex;
 
 void consume_token()
 {
-	index++;
+	tokenIndex++;
 }
 
 Node* parseLeaf(vector<Token> tokens)
 {
-	if ((tokens[index].getType() == "NUMBER") || (tokens[index].getType() == "IDENTIFIER"))
+	if ((tokens[tokenIndex].getType() == "NUMBER") || (tokens[tokenIndex].getType() == "IDENTIFIER"))
 	{
-		int curIndex = index;
+		int curIndex = tokenIndex;
 		consume_token();
 		Node* leaf = createNewNode(tokens[curIndex], NULL, NULL);
 		return leaf;
@@ -25,13 +25,13 @@ Node* parseLeaf(vector<Token> tokens)
 Node* parseElement(vector<Token> tokens)
 {
 	Node* tree = NULL;
-	if (!(index >= tokens.size()))
+	if (!(tokenIndex >= tokens.size()))
 	{
-		if (tokens[index].getValue() == "(")
+		if (tokens[tokenIndex].getValue() == "(")
 		{
 			consume_token();
 			tree = parseExperssion(tokens);
-			if (!(index >= tokens.size()) && tokens[index].getValue() == ")")
+			if (!(tokenIndex >= tokens.size()) && tokens[tokenIndex].getValue() == ")")
 			{
 				consume_token();
 				return tree;
@@ -56,9 +56,9 @@ Node* parsePiece(vector<Token> tokens)
 	{
 		return NULL;
 	}
-	if (!(index >= tokens.size()) && (tokens[index].getValue() == "*"))
+	if (!(tokenIndex >= tokens.size()) && (tokens[tokenIndex].getValue() == "*"))
 	{
-		int curIndex = index;
+		int curIndex = tokenIndex;
 		consume_token();
 		tree = createNewNode(tokens[curIndex], tree, parseElement(tokens));
 	}
@@ -72,9 +72,9 @@ Node* parseFactor(vector<Token> tokens)
 	{
 		return NULL;
 	}
-	if (!(index >= tokens.size()) && (tokens[index].getValue() == "/"))
+	if (!(tokenIndex >= tokens.size()) && (tokens[tokenIndex].getValue() == "/"))
 	{
-		int curIndex = index;
+		int curIndex = tokenIndex;
 		consume_token();
 		tree = createNewNode(tokens[curIndex], tree, parsePiece(tokens));
 	}
@@ -88,9 +88,9 @@ Node* parseTerm(vector<Token> tokens)
 	{
 		return NULL;
 	}
-	if (!(index >= tokens.size()) && (tokens[index].getValue() == "-"))
+	if (!(tokenIndex >= tokens.size()) && (tokens[tokenIndex].getValue() == "-"))
 	{
-		int curIndex = index;
+		int curIndex = tokenIndex;
 		consume_token();
 		tree = createNewNode(tokens[curIndex], tree, parseFactor(tokens));
 	}
@@ -104,9 +104,9 @@ Node* parseExperssion(vector<Token> tokens)
 	{
 		return NULL;
 	}
-	if (!(index >= tokens.size()) && (tokens[index].getValue() == "+"))
+	if (!(tokenIndex >= tokens.size()) && (tokens[tokenIndex].getValue() == "+"))
 	{
-		int curIndex = index;
+		int curIndex = tokenIndex;
 		consume_token();
 		tree = createNewNode(tokens[curIndex], tree, parseTerm(tokens));
 	}
@@ -115,7 +115,7 @@ Node* parseExperssion(vector<Token> tokens)
 
 Node* parse(vector<Token> tokens)
 {
-	index = 0;
+	tokenIndex = 0;
 	Node* root = parseExperssion(tokens);
 	return root;
 }

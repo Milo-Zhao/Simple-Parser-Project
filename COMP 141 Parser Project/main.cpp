@@ -2,7 +2,7 @@
 Programmer: Fangyuan Zhao
 			Group 26
 Course:     COMP 141
-Phase:      2.1
+Phase:      2.2
 */
 #include <iostream>
 #include <sstream>
@@ -30,17 +30,23 @@ int main(int argc, char** argv)
 	int linesIndex = 0;
 	int* linesIndexPtr = &linesIndex;
 	string* lines = splitByLine(linesIndexPtr);
+	vector<Token> tokensTemp;
 	vector<Token> tokens;
 	Node* root;
+	outputFile << "Parsing..." << endl;
+	outputFile << "Tokens: " << endl;
 	for (int i = 0; i < linesIndex; i++)
 	{
-		outputFile << "Parsing..." << endl;
-		outputFile << "Line: " << lines[i] << endl;
-		tokens = Tokenizer(lines[i], linesIndexPtr);
-		outputFile << "AST: " << endl << endl;
-		root = parse(tokens);
-		printAST(root, 0);
+		tokensTemp = Tokenizer(lines[i], linesIndexPtr);
+		for (int j = 0; j < tokensTemp.size(); j++)
+		{
+			tokens.push_back(tokensTemp[j]);
+		}
 	}
+	outputFile << endl << "AST: " << endl;
+	root = parse(tokens);
+	printAST(root, 0);
+
 	//finishing
 	cout << "Program terminated." << endl;
 	inputFile.close();

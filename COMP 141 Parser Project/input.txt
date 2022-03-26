@@ -1,8 +1,7 @@
-3 * (5 + 2 / x - 1)
-x32 := 36 - y;
-if y then
-x32 :=0; skip
-else
-whiley := 12^2;
-z:= x32
-endif
+z := 0;
+x := 3;
+y := 0;
+while x-y do
+z := z + y;
+y := y + 1;
+endwhile
