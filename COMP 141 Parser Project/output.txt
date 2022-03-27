@@ -32,4 +32,31 @@ y       : IDENTIFIER
 endwhile: KEYWORD 
 
 AST: 
-z : IDENTIFIER
+; : SYMBOL
+    ; : SYMBOL
+        ; : SYMBOL
+            := : SYMBOL
+                z : IDENTIFIER
+                0 : NUMBER
+            := : SYMBOL
+                x : IDENTIFIER
+                3 : NUMBER
+        := : SYMBOL
+            y : IDENTIFIER
+            0 : NUMBER
+    while : KEYWORD
+        - : SYMBOL
+            x : IDENTIFIER
+            y : IDENTIFIER
+        ; : SYMBOL
+            ; : SYMBOL
+                := : SYMBOL
+                    z : IDENTIFIER
+                    + : SYMBOL
+                        z : IDENTIFIER
+                        y : IDENTIFIER
+                := : SYMBOL
+                    y : IDENTIFIER
+                    + : SYMBOL
+                        y : IDENTIFIER
+                        1 : NUMBER

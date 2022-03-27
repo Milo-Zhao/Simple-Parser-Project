@@ -2,7 +2,7 @@
 Programmer: Fangyuan Zhao
 			Group 26
 Course:     COMP 141
-Phase:      2.2
+Phase:      2.1
 */
 #include <iostream>
 #include <sstream>
@@ -46,7 +46,6 @@ int main(int argc, char** argv)
 	outputFile << endl << "AST: " << endl;
 	root = parse(tokens);
 	printAST(root, 0);
-
 	//finishing
 	cout << "Program terminated." << endl;
 	inputFile.close();

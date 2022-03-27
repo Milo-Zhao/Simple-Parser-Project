@@ -5,6 +5,7 @@ struct Node
 {
 	Token token;
 	Node* left;
+	Node* middle;
 	Node* right;
 	Token returnToken()
 	{
@@ -12,11 +13,12 @@ struct Node
 	}
 };
 
-Node* createNewNode(Token t, Node* l, Node* r)
+Node* createNewNode(Token t, Node* l, Node* m, Node* r)
 {
 	Node* newNode = new Node();
 	newNode->token = t;
 	newNode->left = l;
+	newNode->middle = m;
 	newNode->right = r;
 	return newNode;
 }
