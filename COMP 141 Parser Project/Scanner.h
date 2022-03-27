@@ -61,7 +61,7 @@ string* splitByLine(int* linesIndex)
 	return lines;
 }
 
-vector<Token> Tokenizer(string line, int* linesIndex)
+vector<Token> Tokenizer(string line)
 {
 	int checkMatchResult;
 	int rightIndex = 1;

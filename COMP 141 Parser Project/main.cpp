@@ -2,7 +2,7 @@
 Programmer: Fangyuan Zhao
 			Group 26
 Course:     COMP 141
-Phase:      2.1
+Phase:      2.2
 */
 #include <iostream>
 #include <sstream>
@@ -30,14 +30,14 @@ int main(int argc, char** argv)
 	int linesIndex = 0;
 	int* linesIndexPtr = &linesIndex;
 	string* lines = splitByLine(linesIndexPtr);
-	vector<Token> tokensTemp;
 	vector<Token> tokens;
+	vector<Token> tokensTemp;
 	Node* root;
 	outputFile << "Parsing..." << endl;
 	outputFile << "Tokens: " << endl;
 	for (int i = 0; i < linesIndex; i++)
 	{
-		tokensTemp = Tokenizer(lines[i], linesIndexPtr);
+		tokensTemp = Tokenizer(lines[i]);
 		for (int j = 0; j < tokensTemp.size(); j++)
 		{
 			tokens.push_back(tokensTemp[j]);
