@@ -20,7 +20,14 @@ Node* parseLeaf(vector<Token> tokens)
 		Node* leaf = createNewNode(tokens[curIndex], NULL, NULL, NULL);
 		return leaf;
 	}
-	return NULL;
+	else
+	{
+		outputFile << "Error encountered at index: " << tokenIndex << " Token info: "
+			<< tokens[tokenIndex].printToken() << endl;
+		outputFile << "The error usually is caused by the token before the token displayed above." << endl;
+		cout << "Error encountered in function parseLeaf." << endl;
+		return NULL;
+	}
 }
 
 Node* parseElement(vector<Token> tokens)
@@ -39,6 +46,10 @@ Node* parseElement(vector<Token> tokens)
 			}
 			else
 			{
+				outputFile << "Error encountered at index: " << tokenIndex << " Token info: "
+					<< tokens[tokenIndex].printToken() << endl;
+				outputFile << "The error usually is caused by the token before the token displayed above." << endl;
+				cout << "Error encountered in function parseElement." << endl;
 				return NULL;
 			}
 		}
@@ -134,6 +145,13 @@ Node* parseWhile(vector<Token> tokens)
 			tree = createNewNode(tokens[curIndex], left_node, NULL, right_node);
 			return tree;
 		}
+		else
+		{
+			outputFile << "Error encountered at index: " << tokenIndex - 1 << " Token info: "
+				<< tokens[tokenIndex - 1].printToken() << endl;
+			outputFile << "Missing endwhile." << endl;
+			cout << "Error encountered in function parseWhile" << endl;
+		}
 	}
 	return tree;
 }
@@ -164,6 +182,13 @@ Node* parseIf(vector<Token> tokens)
 			}
 		}
 	}
+	else
+	{
+		outputFile << "Error encountered at index: " << tokenIndex << " Token info: "
+			<< tokens[tokenIndex].printToken() << endl;
+		outputFile << "The error usually is caused by the token before the token displayed above." << endl;
+		cout << "Error encountered in function parseIf." << endl;
+	}
 	return tree;
 }
 
@@ -180,6 +205,13 @@ Node* parseAssignment(vector<Token> tokens)
 		consume_token();
 		tree = createNewNode(tokens[curIndex], tree, NULL, parseExperssion(tokens));
 		return tree;
+	}
+	else
+	{
+		outputFile << "Error encountered at index: " << tokenIndex << " Token info: "
+			<< tokens[tokenIndex].printToken() << endl;
+		outputFile << "The error usually is caused by the token before the token displayed above." << endl;
+		cout << "Error encountered in function parseAssignment." << endl;
 	}
 	return tree;
 }
@@ -209,6 +241,13 @@ Node* parseBase(vector<Token> tokens)
 			return tree;
 		}
 	}
+	else
+	{
+		outputFile << "Error encountered at index: " << tokenIndex << " Token info: "
+			<< tokens[tokenIndex].printToken() << endl;
+		outputFile << "The error usually is caused by the token before the token displayed above." << endl;
+		cout << "Error encountered in function parseBase." << endl;
+	}
 	return tree;
 }
 
@@ -225,6 +264,7 @@ Node* parseStatement(vector<Token> tokens)
 		consume_token();
 		tree = createNewNode(tokens[curIndex], tree, NULL, parseBase(tokens));
 	}
+
 	return tree;
 }
 

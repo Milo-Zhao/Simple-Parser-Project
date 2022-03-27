@@ -12,7 +12,6 @@ y       : IDENTIFIER
 :=      : SYMBOL  
 0       : NUMBER  
 ;       : SYMBOL  
-while   : KEYWORD 
 x       : IDENTIFIER
 -       : SYMBOL  
 y       : IDENTIFIER
@@ -28,10 +27,11 @@ y       : IDENTIFIER
 y       : IDENTIFIER
 +       : SYMBOL  
 1       : NUMBER  
-;       : SYMBOL  
 endwhile: KEYWORD 
 
 AST: 
+Error encountered at index: 13 Token info: - : SYMBOL
+The error usually is caused by the token before the token displayed above.
 ; : SYMBOL
     ; : SYMBOL
         ; : SYMBOL
@@ -44,19 +44,4 @@ AST:
         := : SYMBOL
             y : IDENTIFIER
             0 : NUMBER
-    while : KEYWORD
-        - : SYMBOL
-            x : IDENTIFIER
-            y : IDENTIFIER
-        ; : SYMBOL
-            ; : SYMBOL
-                := : SYMBOL
-                    z : IDENTIFIER
-                    + : SYMBOL
-                        z : IDENTIFIER
-                        y : IDENTIFIER
-                := : SYMBOL
-                    y : IDENTIFIER
-                    + : SYMBOL
-                        y : IDENTIFIER
-                        1 : NUMBER
+    x : IDENTIFIER

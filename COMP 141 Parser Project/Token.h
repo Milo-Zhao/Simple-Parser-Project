@@ -31,6 +31,10 @@ public:
 	{
 		return type;
 	}
+	string printToken()
+	{
+		return value + " : " + type;
+	}
 private:
 	string value;
 	string type;

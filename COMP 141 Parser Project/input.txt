@@ -4,5 +4,5 @@ y := 0;
 
 while x-y do
 	z := z + y;
-	y := y + 1;
+	y := y + 1
 endwhile
