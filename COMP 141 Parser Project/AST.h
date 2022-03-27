@@ -153,6 +153,13 @@ Node* parseWhile(vector<Token> tokens)
 			cout << "Error encountered in function parseWhile" << endl;
 		}
 	}
+	else
+	{
+		outputFile << "Error encountered at index: " << tokenIndex << " Token info: "
+			<< tokens[tokenIndex].printToken() << endl;
+		outputFile << "The error usually is caused by the token before the token displayed above." << endl;
+		cout << "Error encountered in function parseWhile." << endl;
+	}
 	return tree;
 }
 
@@ -241,13 +248,10 @@ Node* parseBase(vector<Token> tokens)
 			return tree;
 		}
 	}
-	else
-	{
-		outputFile << "Error encountered at index: " << tokenIndex << " Token info: "
-			<< tokens[tokenIndex].printToken() << endl;
-		outputFile << "The error usually is caused by the token before the token displayed above." << endl;
-		cout << "Error encountered in function parseBase." << endl;
-	}
+	outputFile << "Error encountered at index: " << tokenIndex << " Token info: "
+		<< tokens[tokenIndex].printToken() << endl;
+	outputFile << "The error usually is caused by the token before the token displayed above." << endl;
+	cout << "Error encountered in function parseBase." << endl;
 	return tree;
 }
 
